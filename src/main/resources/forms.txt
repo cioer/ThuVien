@@ -1,0 +1,17 @@
+form đăng nhập: label: user, pass
+		textfeild: tfUser
+		passwordfeild: pfPass
+		CheckBox: hiện mật khẩu
+		button: đăng nhập,đăng kí
+form đăng kí: Tên nhân viên
+		Số điện thoại
+		pass
+		nhập lại pass
+		vai trò (commbo box) chọn 1 trong những vị trí: giám đốc, thủ thư,...
+		button đăng kí
+
+form Mượn trả: 
+	1,panel doc gia: Mã độc giả,Tên đọc giả, ngày sinh, lớp, khoa
+	2,panel tìm sách: checkbox tìm sách theo tên, tác giả, năm xuất bản, table sách tìm được
+
+	3,panel xác nhận mượn: sau khi chọn ở bảng mượn sách => hiện lên bảng xác nhận mượn, button xác nhận
