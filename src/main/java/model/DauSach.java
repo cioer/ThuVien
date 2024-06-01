@@ -19,7 +19,6 @@ public class DauSach {
     private String tacGia;
     private String nhaXB;
     private String namXB;
-
     private float donGia;
 
     // Constructor
@@ -35,6 +34,9 @@ public class DauSach {
         this.namXB = namXB;
 
         this.donGia = donGia;
+    }
+
+    private DauSach() {
     }
 
     // Getters and Setters
@@ -84,6 +86,53 @@ public class DauSach {
 
     public void setDonGia(float donGia) {
         this.donGia = donGia;
+    }
+
+    public static List<DauSach> searchDS(String maDS, String tenS, String tacGia, String nhaXB, String namXB, float donGiaduoi, float donGiaTren, String sortOrder) throws SQLException {//asc tang dan desc giam dan
+        List<DauSach> dsDS = new ArrayList<>();
+        
+        String query1 = "SELECT * FROM [DauSach] "
+                + "WHERE ([MaDS] = ? OR ? IS NULL) "
+                + "  AND ([TenS] = ? OR ? IS NULL) "
+                + "  AND ([TacGia] = ? OR ? IS NULL)"
+                + "  AND ([NhaXB] = ? OR ? IS NULL)"
+                + "  AND ([NamXB] = ? OR ? IS NULL)"
+                + "  AND ([DonGia] >= ? and [DonGia] <= ?) ";
+        String query2 = query1 + "ORDER BY [DonGia] " + sortOrder + ";";
+        try (Connection conn = Conn.conn(); PreparedStatement pstmt = conn.prepareStatement(query2)) {
+
+            pstmt.setString(1, maDS);
+            pstmt.setString(2, maDS);
+            pstmt.setString(3, tenS);
+            pstmt.setString(4, tenS);
+            pstmt.setString(5, tacGia);
+            pstmt.setString(6, tacGia);
+            pstmt.setString(7, nhaXB);
+            pstmt.setString(8, nhaXB);
+            pstmt.setString(9, namXB);
+            pstmt.setString(10, namXB);
+
+            pstmt.setFloat(11, donGiaduoi);
+            pstmt.setFloat(12, donGiaTren);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    DauSach ds = new DauSach();
+                    ds.setMaDS(rs.getString("maDS"));
+                    ds.setTenS(rs.getString("TenS"));
+                    ds.setTacGia(rs.getString("TacGia"));
+                    ds.setNhaXB(rs.getString("NhaXB"));
+                    ds.setNamXB(rs.getString("NamXB"));
+                    ds.setDonGia(rs.getFloat("DonGia"));
+                    dsDS.add(ds);
+                    
+                }
+            }
+            Conn.ColseConn(conn);
+        } catch (SQLException e) {
+            throw new SQLException("Loi cau lenh !");
+        }
+        return dsDS;
     }
 
     public static List<String> getListMaDS() throws SQLException {
@@ -143,7 +192,7 @@ public class DauSach {
         statement.setString(1, this.maDS);
         int i = statement.executeUpdate();
         Conn.ColseConn(connection);
-        if(i == 0){
+        if (i == 0) {
             throw new SQLException("Record with MaDS " + maDS + " does not exist.");
         }
         return i;
@@ -164,7 +213,7 @@ public class DauSach {
         int affectedRows = statement.executeUpdate();
         connection.commit();
         Conn.ColseConn(connection);
-        if(affectedRows == 0){
+        if (affectedRows == 0) {
             throw new SQLException("Record with MaDS " + maDS + " does not exist.");
         }
         return affectedRows;
