@@ -1,3 +1,6 @@
+drop database ThuVien
+go
+
 create database ThuVien
 go
 
@@ -11,7 +14,6 @@ CREATE TABLE [DauSach] (
   [TacGia] nvarchar NOT NULL,
   [NhaXB] nvarchar NOT NULL,
   [NamXB] varchar(10) NOT NULL,
-  [SoLuongBS] int NOT NULL,
   [DonGia] float not null
 )
 GO
@@ -27,7 +29,7 @@ GO
 CREATE TABLE [NhanVien] (
   [MaNV] varchar(20) PRIMARY KEY,
   [TenNV] nvarchar NOT NULL,
-  [SoDT] varchar(20) NOT NULL,
+  [SoDT] varchar(20) UNIQUE,
   [pass] nvarchar(255) NOT NULL,
   [VaiTro] nvarchar NOT NULL
 )
@@ -36,7 +38,7 @@ GO
 CREATE TABLE [DocGia] (
   [MaDG] varchar(20) PRIMARY KEY,
   [tenDG] nvarchar NOT NULL,
-  [NgaySinh] Date,
+  [SoDT] varchar(20) not null,
   [Lop] nvarchar(255) NOT NULL,
   [Khoa] nvarchar NOT NULL
 )
