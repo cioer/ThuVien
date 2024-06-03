@@ -85,6 +85,8 @@ public class NhanVien {
             statement.executeUpdate();
             Conn.ColseConn(connection);
             System.out.println("Record added successfully.");
+        }catch(SQLException ex){
+            throw new SQLException("Đăng kí không thành công:" + ex.getMessage());
         }
     }
 
