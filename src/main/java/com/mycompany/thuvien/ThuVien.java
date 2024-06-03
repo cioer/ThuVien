@@ -4,6 +4,8 @@
 
 package com.mycompany.thuvien;
 
+import view.AllTable;
+
 /**
  *
  * @author Admin
@@ -11,6 +13,9 @@ package com.mycompany.thuvien;
 public class ThuVien {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+       AllTable test = new AllTable();
+       test.setVisible(true);
+       test.pack();
+       
     }
 }

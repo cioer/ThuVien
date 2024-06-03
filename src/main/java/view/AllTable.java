@@ -89,7 +89,13 @@ public class AllTable extends javax.swing.JFrame {
 
     private void cmbListTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbListTableActionPerformed
         // TODO add your handling code here:
-
+        String tableName = this.cmbListTable.getSelectedItem().toString();
+        AllTableCtrl atctr = new AllTableCtrl();
+        try {
+            atctr.hienTable(tb, tableName);
+        } catch (SQLException ex) {
+            Logger.getLogger(AllTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cmbListTableActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
