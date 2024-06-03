@@ -10,9 +10,9 @@ go
  
 CREATE TABLE [DauSach] (
   [MaDS] varchar(20) PRIMARY KEY,
-  [TenS] nvarchar NOT NULL,
-  [TacGia] nvarchar NOT NULL,
-  [NhaXB] nvarchar NOT NULL,
+  [TenS] nvarchar(200) NOT NULL,
+  [TacGia] nvarchar(200) NOT NULL,
+  [NhaXB] nvarchar(200) NOT NULL,
   [NamXB] varchar(10) NOT NULL,
   [DonGia] float not null
 )
@@ -21,26 +21,26 @@ GO
 CREATE TABLE [Sach] (
   [MaS] varchar(20) PRIMARY KEY,
   [MaDS] varchar(20),
-  [Vitri] nvarchar NOT NULL,
-  [TinhTrang] nvarchar NOT NULL
+  [Vitri] nvarchar(200) NOT NULL,
+  [TinhTrang] nvarchar(200) NOT NULL
 )
 GO
 
 CREATE TABLE [NhanVien] (
   [MaNV] varchar(20) PRIMARY KEY,
-  [TenNV] nvarchar NOT NULL,
+  [TenNV] nvarchar(200) NOT NULL,
   [SoDT] varchar(20) UNIQUE,
   [pass] nvarchar(255) NOT NULL,
-  [VaiTro] nvarchar NOT NULL
+  [VaiTro] nvarchar(200) NOT NULL
 )
 GO
 
 CREATE TABLE [DocGia] (
   [MaDG] varchar(20) PRIMARY KEY,
-  [tenDG] nvarchar NOT NULL,
+  [tenDG] nvarchar(200) NOT NULL,
   [SoDT] varchar(20) not null,
   [Lop] nvarchar(255) NOT NULL,
-  [Khoa] nvarchar NOT NULL
+  [Khoa] nvarchar(200) NOT NULL
 )
 GO
 
