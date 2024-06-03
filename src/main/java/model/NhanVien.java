@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class NhanVien {
 
@@ -71,6 +73,41 @@ public class NhanVien {
         this.vaiTro = vaiTro;
     }
 
+    public String CreateMaNV() throws SQLException{
+        String query = "select top(1) MaNV from NhanVien order by MaNV desc";
+        try {
+            ResultSet rs = Conn.getData(query);
+            String result = "";
+            while ( rs. next()){
+                result = rs.getString(1);
+            }
+            if (result.equals("")){
+                return "nv1";
+            }
+            Integer i = Integer.parseInt(result.substring(2));
+            i += 1;
+            return "nv"+i.toString();
+        } catch (SQLException ex) {
+            throw new SQLException("Tạo mã NV không thành công "+ex.getMessage());
+        }
+        
+    }
+    
+    public String SoLuotChoMuon() throws SQLException{
+        String query = "select count(*) from MuonTra where MaNV = ?";
+        Integer i = 0;
+        try {
+            PreparedStatement ptm = Conn.conn().prepareStatement(query);
+            ptm.setString(1,maNV);
+            ResultSet rs = ptm.executeQuery();
+            while(rs.next()){
+                i = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            throw new SQLException("Loi Tim so luot cho muon: " + ex.getMessage());
+        }
+        return i.toString();
+    }
     public void add() throws SQLException {
         String query = "INSERT INTO NhanVien (MaNV, TenNV, SoDT, pass, VaiTro) VALUES (?, ?, ?, ?, ?)";
 
@@ -121,11 +158,14 @@ public class NhanVien {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-
+                    
                     this.setMaNV(resultSet.getString("MaNV"));
                     this.setTenNV(resultSet.getString("TenNV"));
                     this.setVaiTro(resultSet.getString("VaiTro"));
 
+                }else{
+                    Conn.ColseConn(connection);
+                    throw new SQLException("Dang nhap khong thanh cong!");
                 }
             }
             Conn.ColseConn(connection);
