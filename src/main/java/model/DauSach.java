@@ -20,6 +20,15 @@ public class DauSach {
     private String nhaXB;
     private String namXB;
     private float donGia;
+    private Integer soLuotMuon;
+
+    public Integer getSoLuotMuon() {
+        return soLuotMuon;
+    }
+
+    public void setSoLuotMuon(Integer soLuotMuon) {
+        this.soLuotMuon = soLuotMuon;
+    }
 
     // Constructor
     public DauSach(String maDS) throws SQLException {
@@ -90,7 +99,7 @@ public class DauSach {
 
     public static List<DauSach> searchDS(String maDS, String tenS, String tacGia, String nhaXB, String namXB, float donGiaduoi, float donGiaTren, String sortOrder) throws SQLException {//asc tang dan desc giam dan
         List<DauSach> dsDS = new ArrayList<>();
-        
+
         String query1 = "SELECT * FROM [DauSach] "
                 + "WHERE ([MaDS] = ? OR ? IS NULL) "
                 + "  AND ([TenS] = ? OR ? IS NULL) "
@@ -125,7 +134,7 @@ public class DauSach {
                     ds.setNamXB(rs.getString("NamXB"));
                     ds.setDonGia(rs.getFloat("DonGia"));
                     dsDS.add(ds);
-                    
+
                 }
             }
             Conn.ColseConn(conn);
@@ -154,6 +163,9 @@ public class DauSach {
         PreparedStatement pstm = cn.prepareStatement(query);
         pstm.setString(1, maDS);
         ResultSet rs = pstm.executeQuery();
+        if (!rs.next()){
+            throw new SQLException("ma dau sach khong ton tai");
+        }
         while (rs.next()) {
             this.maDS = rs.getString("MaDS");
             this.donGia = rs.getFloat("dongia");
@@ -217,6 +229,26 @@ public class DauSach {
             throw new SQLException("Record with MaDS " + maDS + " does not exist.");
         }
         return affectedRows;
+    }
+
+    public static List<DauSach> top5() throws SQLException {
+        List<DauSach> dsDS = new ArrayList<>();
+        String query = "select top(5) ds.MaDs, count(*) as soluotmuon from DauSach ds "
+                + "inner join Sach s on s.MaDS = ds.MaDS "
+                + "inner join ChiTietMuonTra ctmt on ctmt.MaS = s.MaS "
+                + "group by ds.MaDS "
+                + "order by count(*) desc";
+        try {
+            ResultSet rs = Conn.getData(query);
+            while (rs.next()) {
+                DauSach ds = new DauSach(rs.getString(1));
+                ds.setSoLuotMuon(rs.getInt(2));
+                dsDS.add(ds);
+            }
+        } catch (SQLException ex) {
+            throw new SQLException("Loi tim top 5 dau sach " + ex.getMessage());
+        }
+        return dsDS;
     }
 
 }

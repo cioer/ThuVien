@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.mainFormPanelWellcomCtrl;
 import controller.panelNVCtr;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -55,13 +56,13 @@ public class MainForm extends javax.swing.JFrame {
         btLogout = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbTopSach = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tbTopNV = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TbTopKH = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -84,9 +85,6 @@ public class MainForm extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jButton9 = new javax.swing.JButton();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        lbTimkiemsach2 = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jComboBox5 = new javax.swing.JComboBox<>();
@@ -228,8 +226,8 @@ public class MainForm extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 0));
         jPanel1.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
 
-        jTable2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbTopSach.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        tbTopSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -237,7 +235,7 @@ public class MainForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane5.setViewportView(jTable2);
+        jScrollPane5.setViewportView(tbTopSach);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -259,8 +257,8 @@ public class MainForm extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TOP nhân viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 3, 14))); // NOI18N
         jPanel2.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
 
-        jTable3.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tbTopNV.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        tbTopNV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -268,7 +266,7 @@ public class MainForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane6.setViewportView(jTable3);
+        jScrollPane6.setViewportView(tbTopNV);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -290,8 +288,8 @@ public class MainForm extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TOP khách hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 3, 14))); // NOI18N
         jPanel3.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
 
-        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TbTopKH.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        TbTopKH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -299,7 +297,7 @@ public class MainForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(TbTopKH);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -545,46 +543,15 @@ public class MainForm extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel9.setText("Tên Khách Hàng");
 
-        jButton9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
-        jButton9.setText("Search");
-        jButton9.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jButton9ItemStateChanged(evt);
-            }
-        });
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-
-        lbTimkiemsach2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        lbTimkiemsach2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Tên khách hàng", "Năm sinh", "Sách chưa trả"
-            }
-        ));
-        jScrollPane7.setViewportView(lbTimkiemsach2);
-
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField2)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -592,12 +559,9 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -612,7 +576,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 390, Short.MAX_VALUE)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -845,6 +809,13 @@ public class MainForm extends javax.swing.JFrame {
         loadPanelNV();
         panelNVCtr.show(pfpass, btSave, false);
         this.cmbChucNang.setSelectedIndex(0);
+        ///load cac panel top
+        mainFormPanelWellcomCtrl.loadTableTop(tbTopSach,mainFormPanelWellcomCtrl.tbTopSach);
+        mainFormPanelWellcomCtrl.loadTableTop(TbTopKH,mainFormPanelWellcomCtrl.tbTopDG);
+        mainFormPanelWellcomCtrl.loadTableTop(tbTopNV, mainFormPanelWellcomCtrl.tbTopNV);
+        
+        
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void btLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogoutActionPerformed
@@ -871,14 +842,6 @@ public class MainForm extends javax.swing.JFrame {
     private void jButton6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jButton6ItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ItemStateChanged
-
-    private void jButton9ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jButton9ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ItemStateChanged
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -917,6 +880,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TbTopKH;
     private javax.swing.JButton btLogout;
     private javax.swing.JButton btSave;
     private javax.swing.JComboBox<String> cmbChucNang;
@@ -928,7 +892,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
@@ -964,11 +927,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -977,11 +936,12 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel lbTenNV;
     private javax.swing.JTable lbTimkiemsach;
     private javax.swing.JTable lbTimkiemsach1;
-    private javax.swing.JTable lbTimkiemsach2;
     private javax.swing.JLabel lbVaiTro;
     private javax.swing.JPanel panelChaoMung;
     private javax.swing.JPanel panelNV;
     private javax.swing.JPasswordField pfpass;
+    private javax.swing.JTable tbTopNV;
+    private javax.swing.JTable tbTopSach;
     // End of variables declaration//GEN-END:variables
 
     private void loadPanelNV() {

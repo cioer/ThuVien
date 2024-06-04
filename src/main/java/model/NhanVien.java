@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,9 +22,22 @@ public class NhanVien {
     private String soDT;
     private String pass;
     private String vaiTro;
+    private Integer soLanChoMuon;
+
+    public Integer getSoLanChoMuon() {
+        return soLanChoMuon;
+    }
+
+    public void setSoLanChoMuon(Integer soLanChoMuon) {
+        this.soLanChoMuon = soLanChoMuon;
+    }
 
     // Constructors, getters, and setters
     public NhanVien() {
+    }
+
+    public NhanVien(String maNV) throws SQLException {
+        getFromDatabase(maNV);
     }
 
     public NhanVien(String maNV, String tenNV, String soDT, String pass, String vaiTro) {
@@ -187,6 +202,43 @@ public class NhanVien {
         } catch (NoSuchAlgorithmException e) {
             throw new SQLException("Error while hashing password: " + e.getMessage());
         }
+    }
+    public static List<NhanVien> top5NV() throws SQLException{
+        List<NhanVien> dsNV = new ArrayList<>();
+        String query = "select top(5) nv.MaNV, count(*) as soChoLanMuon from NhanVien nv "
+                + "inner join MuonTra mt on nv.MaNV = mt.MaNV "
+                + "group by nv.MaNV "
+                + "order by count(*) desc";
+        try {
+            ResultSet rs = Conn.getData(query);
+            while (rs.next()){
+                NhanVien nv = new NhanVien(rs.getString(1));
+                
+                nv.setSoLanChoMuon(rs.getInt(2));
+                dsNV.add(nv);
+            }
+        } catch (SQLException ex) {
+            throw new SQLException("Loi tim top 5 nhan vien "+ex.getMessage());
+        }
+        return dsNV;
+    }
+
+    private void getFromDatabase(String maNV) throws SQLException {
+        String query = "select * from NhanVien where MaNV = ?";
+        Connection cn = Conn.conn();
+        PreparedStatement pstm = cn.prepareStatement(query);
+        pstm.setString(1, maNV);
+        ResultSet rs = pstm.executeQuery();
+        if (!rs.next()){
+            throw new SQLException("ma Nhan Vien khong ton tai");
+        }
+        while(rs.next()){
+            this.setMaNV(rs.getString(1));
+            this.setTenNV(rs.getString(2));
+            this.setSoDT(rs.getString(3));
+            this.setVaiTro(rs.getString(5));
+        }
+        Conn.ColseConn(cn);
     }
 
 }

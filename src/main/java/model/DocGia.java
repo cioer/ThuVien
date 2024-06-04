@@ -10,7 +10,12 @@ package model;
  */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DocGia {
     private String maDG;
@@ -18,9 +23,22 @@ public class DocGia {
     private String soDT;
     private String lop;
     private String khoa;
+    private Integer soLanMuon;
+
+    public Integer getSoLanMuon() {
+        return soLanMuon;
+    }
+
+    public void setSoLanMuon(Integer soLanMuon) {
+        this.soLanMuon = soLanMuon;
+    }
 
     // Constructors, getters, and setters
     
+    public DocGia(String maDG) throws SQLException {
+        truyvansql(maDG);
+    }
+
     public DocGia() {
     }
 
@@ -117,6 +135,45 @@ public class DocGia {
 
             statement.executeUpdate();
             Conn.ColseConn(connection);
+        }
+    }
+    
+    public static List<DocGia> top5DG() throws SQLException{
+        List<DocGia> dsDG = new ArrayList<>();
+        String query = "select top(5) dg.MaDG , count(*) as soLanMuon from DocGia dg "
+                + "inner join MuonTra mt on dg.MaDG = mt.MaDG "
+                + "group by dg.MaDG "
+                + "order by count(*) desc";
+        try {
+            ResultSet rs = Conn.getData(query);
+            while (rs.next()){
+                DocGia dg = new DocGia(rs.getString(1));
+                
+                dg.setSoLanMuon(rs.getInt(2));
+                dsDG.add(dg);
+            }
+        } catch (SQLException ex) {
+            throw new SQLException("Loi tim top 5 doc gia "+ex.getMessage());
+        }
+        return dsDG;
+    }
+
+    private void truyvansql(String maDG) throws SQLException {
+        String query = "select * from DocGia where MaDG = ?";
+        Connection cn = Conn.conn();
+        PreparedStatement pstm = cn.prepareStatement(query);
+        pstm.setString(1, maDG);
+        ResultSet rs = pstm.executeQuery();
+        if (!rs.next()) {
+            throw new SQLException("Ma doc gia khong ton tai");
+        }
+        while(rs.next()){
+            this.maDG = rs.getString(1);
+            this.tenDG = rs.getString(2);
+            this.soDT = rs.getString(3);
+            this.lop = rs.getString(4);
+            this.khoa = rs.getString(5);
+            
         }
     }
 }
