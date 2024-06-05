@@ -62,7 +62,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         RSDTongTien = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPane1 = new raven.tabbed.TabbedPaneCustom();
         panelChaoMung = new javax.swing.JPanel();
         panelNV = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
