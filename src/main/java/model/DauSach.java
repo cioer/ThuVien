@@ -97,19 +97,22 @@ public class DauSach {
         this.donGia = donGia;
     }
 
+    
     public static List<DauSach> searchDS(String maDS, String tenS, String tacGia, String nhaXB, String namXB, float donGiaduoi, float donGiaTren, String sortOrder) throws SQLException {//asc tang dan desc giam dan
         List<DauSach> dsDS = new ArrayList<>();
 
-        String query1 = "SELECT * FROM [DauSach] "
+        String query1 = "SELECT MaDS FROM [DauSach] "
                 + "WHERE ([MaDS] = ? OR ? IS NULL) "
-                + "  AND ([TenS] = ? OR ? IS NULL) "
+                + "  AND ([TenS] LIKE '%' + ? + '%' OR ? IS NULL) "
                 + "  AND ([TacGia] = ? OR ? IS NULL)"
                 + "  AND ([NhaXB] = ? OR ? IS NULL)"
                 + "  AND ([NamXB] = ? OR ? IS NULL)"
                 + "  AND ([DonGia] >= ? and [DonGia] <= ?) ";
         String query2 = query1 + "ORDER BY [DonGia] " + sortOrder + ";";
-        try (Connection conn = Conn.conn(); PreparedStatement pstmt = conn.prepareStatement(query2)) {
-
+        try {
+            Connection conn = Conn.conn();
+            conn.setAutoCommit(false);
+            PreparedStatement pstmt = conn.prepareStatement(query2);
             pstmt.setString(1, maDS);
             pstmt.setString(2, maDS);
             pstmt.setString(3, tenS);
@@ -124,19 +127,15 @@ public class DauSach {
             pstmt.setFloat(11, donGiaduoi);
             pstmt.setFloat(12, donGiaTren);
 
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-                    DauSach ds = new DauSach();
-                    ds.setMaDS(rs.getString("maDS"));
-                    ds.setTenS(rs.getString("TenS"));
-                    ds.setTacGia(rs.getString("TacGia"));
-                    ds.setNhaXB(rs.getString("NhaXB"));
-                    ds.setNamXB(rs.getString("NamXB"));
-                    ds.setDonGia(rs.getFloat("DonGia"));
-                    dsDS.add(ds);
+            ResultSet rs = pstmt.executeQuery();
+            conn.commit();
+            while (rs.next()) {
+                DauSach ds = new DauSach(rs.getString(1));
 
-                }
+                dsDS.add(ds);
+
             }
+
             Conn.ColseConn(conn);
         } catch (SQLException e) {
             throw new SQLException("Loi cau lenh !");
@@ -163,10 +162,9 @@ public class DauSach {
         PreparedStatement pstm = cn.prepareStatement(query);
         pstm.setString(1, maDS);
         ResultSet rs = pstm.executeQuery();
-        if (!rs.next()){
+        if (!rs.next()) {
             throw new SQLException("ma dau sach khong ton tai");
-        }
-        while (rs.next()) {
+        } else {
             this.maDS = rs.getString("MaDS");
             this.donGia = rs.getFloat("dongia");
             this.namXB = rs.getString("namXB");
@@ -249,6 +247,11 @@ public class DauSach {
             throw new SQLException("Loi tim top 5 dau sach " + ex.getMessage());
         }
         return dsDS;
+    }
+
+    @Override
+    public String toString() {
+        return "DauSach{" + "maDS=" + maDS + ", tenS=" + tenS + ", tacGia=" + tacGia + ", nhaXB=" + nhaXB + ", namXB=" + namXB + ", donGia=" + donGia + ", soLuotMuon=" + soLuotMuon + '}';
     }
 
 }

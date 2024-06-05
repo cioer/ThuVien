@@ -5,6 +5,10 @@
 package com.mycompany.thuvien;
 
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.DauSach;
 import view.Login;
 import view.MainForm;
 
@@ -35,6 +39,13 @@ public class ThuVien {
         LoginFrame.setVisible(true);
         LoginFrame.pack();
         LoginFrame.setLocationRelativeTo(null); 
-       
+//       DauSach ds;
+//        try {
+//            ds = new DauSach("ds1");
+//            System.out.println(ds.toString());
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ThuVien.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
     }
 }

@@ -10,7 +10,10 @@ import controller.panelNVCtr;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import model.NhanVien;
 
 /**
@@ -448,7 +451,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel15.setText("Đơn giá");
 
-        tfGiaLN1.setText("10000000");
+        tfGiaLN1.setText("99999999999999999");
 
         tfGiaNN1.setText("0");
 
@@ -507,13 +510,14 @@ public class MainForm extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(tftenS1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(tftacGia1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfnhaXB1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(tfnamXB1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel7)
+                        .addComponent(tftacGia1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)
+                        .addComponent(tfnamXB1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -690,9 +694,9 @@ public class MainForm extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Mượn Trả", jpannelMuonTra);
 
-        JPannelQuanLiSach.setBackground(new java.awt.Color(255, 255, 255));
+        JPannelQuanLiSach.setBackground(new java.awt.Color(204, 204, 255));
 
-        jPanel12.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 3, 14))); // NOI18N
 
         jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -712,7 +716,7 @@ public class MainForm extends javax.swing.JFrame {
 
         tfGiaNN2.setText("0");
 
-        tfGiaLN2.setText("100000000");
+        tfGiaLN2.setText("9999999999999999999999");
 
         jLabel26.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel26.setText("Mã đầu sách");
@@ -787,14 +791,15 @@ public class MainForm extends javax.swing.JFrame {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(tfTenS2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfNhaXB2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel23)
-                        .addComponent(tfNhaXB2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel24)
-                        .addComponent(tfNamXB2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfNamXB2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel21)
+                        .addComponent(tfTenS2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
@@ -802,13 +807,14 @@ public class MainForm extends javax.swing.JFrame {
                     .addComponent(jLabel26)
                     .addComponent(tfMaDS2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(cmbSapXep2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel25)
                         .addComponent(tfGiaLN2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tfGiaNN2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfGiaNN2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel27)
+                        .addComponent(cmbSapXep2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addComponent(btSearch2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -827,9 +833,18 @@ public class MainForm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã Sách", "Tên Sách", "Tác Giả", "Nhà Xuất Bản", "Năm Xuất Bản", "Đơn Giá"
+
             }
         ));
+        tbResultSach2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tbResultSach2AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane3.setViewportView(tbResultSach2);
 
         btfix2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -857,8 +872,8 @@ public class MainForm extends javax.swing.JFrame {
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAdd2)
                     .addComponent(btfix2)
@@ -884,7 +899,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Quản lí sách", JPannelQuanLiSach);
@@ -955,15 +970,15 @@ public class MainForm extends javax.swing.JFrame {
         SachCtrl sachCtrl = new SachCtrl();
         String mads, tenS, tacGia, nhaXB, namXB, sortOrderby;
         float dongiaNN, dongiaLL;
-        mads = tfMaDS1.getText().trim();
-        tenS = tftenS1.getText().trim();
-        tacGia = tftacGia1.getText().trim();
-        nhaXB = tfnhaXB1.getText().trim();
-        namXB = tfnamXB1.getText().trim();
-        sortOrderby = cmbSapXep1.getSelectedItem().toString();
+        mads = getStr(tfMaDS1);
+        tenS = getStr(tftenS1);
+        tacGia = getStr(tftacGia1);
+        nhaXB = getStr(tfnhaXB1);
+        namXB = getStr(tfnamXB1);
+        sortOrderby = getStr(cmbSapXep1);
         dongiaNN = Float.parseFloat(tfGiaNN1.getText().trim());
         dongiaLL = Float.parseFloat(tfGiaLN1.getText().trim());
-        sachCtrl.SachtoTable(tbResultTb1, mads, tenS, tacGia, nhaXB, namXB, dongiaLL, dongiaNN, sortOrderby);
+        sachCtrl.SachtoTable(tbResultTb1, mads, tenS, tacGia, nhaXB, namXB, dongiaNN, dongiaLL, sortOrderby);
     }//GEN-LAST:event_btSearch1ActionPerformed
 
     private void btSearch1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btSearch1ItemStateChanged
@@ -979,15 +994,15 @@ public class MainForm extends javax.swing.JFrame {
         SachCtrl sachCtrl = new SachCtrl();
         String mads, tenS, tacGia, nhaXB, namXB, sortOrderby;
         float dongiaNN, dongiaLL;
-        mads = tfMaDS2.getText().trim();
-        tenS = tfTenS2.getText().trim();
-        tacGia = tfTacGia2.getText().trim();
-        nhaXB = tfNhaXB2.getText().trim();
-        namXB = tfNamXB2.getText().trim();
-        sortOrderby = cmbSapXep2.getSelectedItem().toString();
+        mads = getStr(tfMaDS2);
+        tenS = getStr(tfTenS2);
+        tacGia = getStr(tfTacGia2);
+        nhaXB = getStr(tfNhaXB2);
+        namXB = getStr(tfNamXB2);
+        sortOrderby = getStr(cmbSapXep2);
         dongiaNN = Float.parseFloat(tfGiaNN2.getText().trim());
         dongiaLL = Float.parseFloat(tfGiaLN2.getText().trim());
-        sachCtrl.SachtoTable(tbResultSach2, mads, tenS, tacGia, nhaXB, namXB, dongiaLL, dongiaNN, sortOrderby);
+        sachCtrl.SachtoTable(tbResultSach2, mads, tenS, tacGia, nhaXB, namXB, dongiaNN, dongiaLL, sortOrderby);
     }//GEN-LAST:event_btSearch2ActionPerformed
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
@@ -998,29 +1013,51 @@ public class MainForm extends javax.swing.JFrame {
         float dongiaNN, dongiaLL;
         switch (selectedIndex) {
             case 1://tab muon tra
-                mads = tfMaDS1.getText().trim();
-                tenS = tftenS1.getText().trim();
-                tacGia = tftacGia1.getText().trim();
-                nhaXB = tfnhaXB1.getText().trim();
-                namXB = tfnamXB1.getText().trim();
-                sortOrderby = cmbSapXep1.getSelectedItem().toString();
+                mads = getStr(tfMaDS1);
+                tenS = getStr(tftenS1);
+                tacGia = getStr(tftacGia1);
+                nhaXB = getStr(tfnhaXB1);
+                namXB = getStr(tfnamXB1);
+                sortOrderby = getStr(cmbSapXep1);
                 dongiaNN = Float.parseFloat(tfGiaNN1.getText().trim());
                 dongiaLL = Float.parseFloat(tfGiaLN1.getText().trim());
-                sachCtrl.SachtoTable(tbResultTb1, mads, tenS, tacGia, nhaXB, namXB, dongiaLL, dongiaNN, sortOrderby);
+                sachCtrl.SachtoTable(tbResultTb1, mads, tenS, tacGia, nhaXB, namXB, dongiaNN, dongiaLL, sortOrderby);
                 break;
             case 2://tab quan li sach
-                mads = tfMaDS2.getText().trim();
-                tenS = tfTenS2.getText().trim();
-                tacGia = tfTacGia2.getText().trim();
-                nhaXB = tfNhaXB2.getText().trim();
-                namXB = tfNamXB2.getText().trim();
-                sortOrderby = cmbSapXep2.getSelectedItem().toString();
+                mads = getStr(tfMaDS2);
+                tenS = getStr(tfTenS2);
+                tacGia = getStr(tfTacGia2);
+                nhaXB = getStr(tfNhaXB2);
+                namXB = getStr(tfNamXB2);
+                sortOrderby = getStr(cmbSapXep2);
                 dongiaNN = Float.parseFloat(tfGiaNN2.getText().trim());
                 dongiaLL = Float.parseFloat(tfGiaLN2.getText().trim());
-                sachCtrl.SachtoTable(tbResultSach2, mads, tenS, tacGia, nhaXB, namXB, dongiaLL, dongiaNN, sortOrderby);
+                sachCtrl.SachtoTable(tbResultSach2, mads, tenS, tacGia, nhaXB, namXB, dongiaNN, dongiaLL, sortOrderby);
                 break;
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
+
+    private void tbResultSach2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tbResultSach2AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbResultSach2AncestorAdded
+
+    private String getStr(JTextField tf) {
+        String rs = tf.getText().trim();
+        if (rs.equals("")) {
+            return null;
+        } else {
+            return rs;
+        }
+    }
+
+    private String getStr(JComboBox cmb) {
+        String rs = cmb.getSelectedItem().toString();
+        if (rs.equals("")) {
+            return null;
+        } else {
+            return rs;
+        }
+    }
 
     /**
      * @param args the command line arguments

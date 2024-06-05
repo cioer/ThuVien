@@ -167,7 +167,7 @@ public class DocGia {
         if (!rs.next()) {
             throw new SQLException("Ma doc gia khong ton tai");
         }
-        while(rs.next()){
+        else{
             this.maDG = rs.getString(1);
             this.tenDG = rs.getString(2);
             this.soDT = rs.getString(3);

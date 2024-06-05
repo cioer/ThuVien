@@ -232,7 +232,7 @@ public class NhanVien {
         if (!rs.next()){
             throw new SQLException("ma Nhan Vien khong ton tai");
         }
-        while(rs.next()){
+        else{
             this.setMaNV(rs.getString(1));
             this.setTenNV(rs.getString(2));
             this.setSoDT(rs.getString(3));
