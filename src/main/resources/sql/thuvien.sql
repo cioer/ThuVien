@@ -56,8 +56,8 @@ GO
 CREATE TABLE [ChiTietMuonTra] (
   [SoPH] varchar(20),
   [MaS] varchar(20),
-  [NgayT] date not null,
-  [TienPhat] float not null,
+  [NgayT] date null,
+  [TienPhat] float null,
   PRIMARY KEY ([SoPH], [MaS])
 )
 GO

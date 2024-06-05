@@ -11,7 +11,10 @@ package model;
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MuonTra {
     private String SoPH;
@@ -72,6 +75,9 @@ public class MuonTra {
     }
 
     public void add() throws SQLException {
+        if(this.SoPH == null){
+            this.SoPH = createMa();
+        }
         String addQuery = "INSERT INTO MuonTra (SoPH, MaDG, MaNV, NgayM, NgayHT) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = Conn.conn();
@@ -131,5 +137,25 @@ public class MuonTra {
         } catch (SQLException e) {
             throw new SQLException("Error deleting data: " + e.getMessage());
         }
+    }
+    
+    private String createMa(){
+        String ma = "mt";
+        String query = "select top(1) SoPH from MuonTra order by SoPH desc";
+        
+            ResultSet rs;
+        try {
+            rs = Conn.getData(query);
+            if(rs.next()){
+                Integer i = Integer.valueOf(rs.getString(1).substring(2));
+                i +=1;
+                return ma + i.toString();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MuonTra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        
+        return ma + "1";
     }
 }

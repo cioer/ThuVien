@@ -102,11 +102,11 @@ public class DauSach {
         List<DauSach> dsDS = new ArrayList<>();
 
         String query1 = "SELECT MaDS FROM [DauSach] "
-                + "WHERE ([MaDS] = ? OR ? IS NULL) "
+                + "WHERE ([MaDS] LIKE '%' + ? + '%' OR ? IS NULL) "
                 + "  AND ([TenS] LIKE '%' + ? + '%' OR ? IS NULL) "
-                + "  AND ([TacGia] = ? OR ? IS NULL)"
-                + "  AND ([NhaXB] = ? OR ? IS NULL)"
-                + "  AND ([NamXB] = ? OR ? IS NULL)"
+                + "  AND ([TacGia] LIKE '%' + ? + '%' OR ? IS NULL)"
+                + "  AND ([NhaXB] LIKE '%' + ? + '%' OR ? IS NULL)"
+                + "  AND ([NamXB] LIKE '%' + ? + '%' OR ? IS NULL)"
                 + "  AND ([DonGia] >= ? and [DonGia] <= ?) ";
         String query2 = query1 + "ORDER BY [DonGia] " + sortOrder + ";";
         try {
@@ -248,7 +248,26 @@ public class DauSach {
         }
         return dsDS;
     }
-
+    
+    public static List<String> MaSachHienCo(String MaDS) throws SQLException {
+        int i = 0;
+        List<String> dsMaS = new ArrayList<>();
+        String query = "select s.mas from DauSach ds "
+                + "inner join Sach s on s.MaDS = ds.MaDS "
+                + "where MaDS = '"+MaDS+"' "
+                + "and TinhTrang like N'có sẵn'";
+                
+        try {
+            ResultSet rs = Conn.getData(query);
+            while(rs.next()){
+                dsMaS.add(rs.getString(1));
+            }
+            
+        } catch (SQLException ex) {
+            throw new SQLException("Loi tim so sach cua 1 dau sach " + ex.getMessage());
+        }
+        return dsMaS;
+    }
     @Override
     public String toString() {
         return "DauSach{" + "maDS=" + maDS + ", tenS=" + tenS + ", tacGia=" + tacGia + ", nhaXB=" + nhaXB + ", namXB=" + namXB + ", donGia=" + donGia + ", soLuotMuon=" + soLuotMuon + '}';

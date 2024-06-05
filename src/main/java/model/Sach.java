@@ -176,4 +176,21 @@ public class Sach {
 
         return sachList;
     }
+
+    public static void DoiTinhTrang(String mas) throws SQLException {
+        String ranh = "có sẵn";
+        String Koranh = "đã mượn";
+        String update = ranh;
+        String query = "select TinhTrang from Sach where mas = '" + mas + "'";
+        ResultSet rs = Conn.getData(query);
+        if (rs.next()) {
+            if (rs.getString(1).equals(ranh)) {
+                update = Koranh;
+            } else {
+                update = ranh;
+            }
+        }
+        update = "update Sach set TinhTrang = N'" + update + "' where mas = '" + mas + "'";
+        Conn.update(update);
+    }
 }
