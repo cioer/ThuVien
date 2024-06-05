@@ -1,16 +1,16 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package com.mycompany.thuvien;
-
 
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.DauSach;
+import view.AllTable;
 import view.Login;
 import view.MainForm;
+
 
 /**
  *
@@ -38,7 +38,7 @@ public class ThuVien {
         Login LoginFrame = new Login();
         LoginFrame.setVisible(true);
         LoginFrame.pack();
-        LoginFrame.setLocationRelativeTo(null); 
+        LoginFrame.setLocationRelativeTo(null);
 //       DauSach ds;
 //        try {
 //            ds = new DauSach("ds1");
@@ -47,5 +47,7 @@ public class ThuVien {
 //            Logger.getLogger(ThuVien.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        
+//        AllTable tb = new AllTable();
+//        tb.setVisible(true);
     }
 }
