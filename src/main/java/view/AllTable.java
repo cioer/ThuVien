@@ -178,8 +178,13 @@ public class AllTable extends javax.swing.JFrame {
         this.jDialog1.pack();
         this.jDialog1.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-
+    public static void main(String[] args) {
+         java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AllTable().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbListTable;

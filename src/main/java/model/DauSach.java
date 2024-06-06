@@ -250,12 +250,11 @@ public class DauSach {
     }
     
     public static List<String> MaSachHienCo(String MaDS) throws SQLException {
-        int i = 0;
+        
         List<String> dsMaS = new ArrayList<>();
-        String query = "select s.mas from DauSach ds "
-                + "inner join Sach s on s.MaDS = ds.MaDS "
-                + "where MaDS = '"+MaDS+"' "
-                + "and TinhTrang like N'có sẵn'";
+        String query = "select mas from sach "
+                + "where (MaDS = '"+MaDS+"') "
+                + "and (TinhTrang like N'có sẵn')";
                 
         try {
             ResultSet rs = Conn.getData(query);

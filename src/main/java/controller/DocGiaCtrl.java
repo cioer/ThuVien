@@ -18,12 +18,10 @@ import model.DocGia;
  * @author coc
  */
 public class DocGiaCtrl {
-
+    
     public DocGiaCtrl() {
     }
     
-    
-
     public void loadCmb(JTextField tf, JComboBox cmb) throws Exception {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         DocGia dg = new DocGia();
@@ -31,7 +29,7 @@ public class DocGiaCtrl {
         model.addAll(dsSoDT);
         cmb.setModel(model);
     }
-
+    
     public DocGia loadDocGia(JComboBox cmb) {
         String sodt = cmb.getSelectedItem().toString();
         DocGia dg = new DocGia();
@@ -44,7 +42,7 @@ public class DocGiaCtrl {
         }
         return null;
     }
-
+    
     public String themDG(JTextField sdt, JTextField ten, JTextField lop, JTextField khoa) throws Exception {
         DocGia dg = new DocGia();
         String sodt = getStr(sdt);
@@ -70,13 +68,23 @@ public class DocGiaCtrl {
         }
         return null;
     }
-
+    
     private String getStr(JTextField tf) throws Exception {
-        String str =  tf.getText().trim();
-        if(str.isEmpty()){
+        String str = tf.getText().trim();
+        if (str.isEmpty()) {
             throw new Exception("Khong duoc de trong!");
         }
         return str;
     }
+    
+    public void rest(JTextField tfSoDTDocGia, JTextField tfTenDocGia, JTextField tfLopDocGia, JTextField tfKhoaDocGia) {
+        setempty(tfSoDTDocGia);
+        setempty(tfTenDocGia);
+         setempty(tfLopDocGia);
+          setempty(tfKhoaDocGia);
+    }
 
+    private void setempty(JTextField tf) {
+        tf.setText("");
+    }
 }

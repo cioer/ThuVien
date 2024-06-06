@@ -21,8 +21,28 @@ import model.Sach;
  * @author coc
  */
 public class MuonTraCtrl {
-    
-    private String MaDG, MaNV,MaDS;
+
+    public static void MuonSach(String maNV, String maDG, String MaDS, String soLuongSach, String soNgayMuon) {
+        
+        MuonTraCtrl mtCtr = new MuonTraCtrl();
+        mtCtr.setMaDG(maDG);
+        mtCtr.setMaDS(MaDS);
+        mtCtr.setMaNV(maNV);
+        mtCtr.setSoLuongSach(Integer.valueOf(soLuongSach.substring(0, soLuongSach.length() - 2)));
+        mtCtr.setSoNgayMuon(Integer.valueOf(soNgayMuon.substring(0, soNgayMuon.length() - 2)));
+
+        
+        try {
+            mtCtr.muonSach();
+        } catch (SQLException ex) {
+            Logger.getLogger(MuonTraCtrl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+
+
+private String MaDG, MaNV,MaDS;
     private Integer soLuongSach, soNgayMuon;
 
     public String getMaDS() {
@@ -67,7 +87,7 @@ public class MuonTraCtrl {
 
     public void muonSach() throws SQLException {
         Date currentDate = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = dateFormat.format(currentDate);
         
         
@@ -75,6 +95,8 @@ public class MuonTraCtrl {
         mtr.setMaDG(MaDG);
         mtr.setMaNV(MaNV);
         mtr.setNgayM(formattedDate);
+        
+        
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(currentDate);
         calendar.add(Calendar.DAY_OF_MONTH, this.soNgayMuon);
@@ -83,11 +105,16 @@ public class MuonTraCtrl {
         mtr.setNgayHT(formattedDate);
         
         mtr.add();//xong phieu muon
-        
+        String soph = mtr.getSoPH();
         //add chi tiet phieu muon
+        System.out.println("form muon tra methon muon sach "+MaDS);
         List<String> dsMaS = DauSach.MaSachHienCo(MaDS);
+        
         for(int i = 0; i < this.soLuongSach;i++){
-            ChiTietMuonTra ctMT = new ChiTietMuonTra(mtr.getSoPH(),dsMaS.get(i),null, (float) 0.0);
+            System.out.println("controller.MuonTraCtrl.muonSach() "+dsMaS.get(i));
+            ChiTietMuonTra ctMT = new ChiTietMuonTra();
+            ctMT.setSoPH(soph);
+            ctMT.setMaS(dsMaS.get(i));
             ctMT.add();
             Sach.DoiTinhTrang(dsMaS.get(i));
         }

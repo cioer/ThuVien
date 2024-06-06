@@ -737,6 +737,11 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         cmbLoadSoDTDocGia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbLoadSoDTDocGia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cmbLoadSoDTDocGiaFocusLost(evt);
+            }
+        });
         cmbLoadSoDTDocGia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cmbLoadSoDTDocGiaMouseClicked(evt);
@@ -1225,17 +1230,13 @@ public class MainForm extends javax.swing.JFrame {
 
     private void cmbLoadSoDTDocGiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbLoadSoDTDocGiaMouseClicked
         // TODO add your handling code here:
-        DocGiaCtrl dgctr = new DocGiaCtrl();
-        DocGia dg = dgctr.loadDocGia(this.cmbLoadSoDTDocGia);
-        tfSoDTDocGia.setText(dg.getSoDT());
-        tfTenDocGia.setText(dg.getTenDG());
-        tfLopDocGia.setText(dg.getLop());
-        tfKhoaDocGia.setText(dg.getKhoa());
+        
     }//GEN-LAST:event_cmbLoadSoDTDocGiaMouseClicked
 
     private void btXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXacNhanActionPerformed
         // TODO add your handling code here:
         int rowCount = this.tbRoSach.getRowCount();
+        System.out.println("view.MainForm.btXacNhanActionPerformed() row cout : " + rowCount);
         if (rowCount == 0) {
             JOptionPane.showMessageDialog(this.panelRoSach, "Ro sach dang trong!");
             return;
@@ -1248,10 +1249,24 @@ public class MainForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this.panelDocGia, ex);
             return;
         }
-        for (int i = 1 ; i <= rowCount;i++){
-            MuonSach(nv.getMaNV(),maDG,tbRoSach.getValueAt(i,0).toString(),tbRoSach.getValueAt(i,3).toString(),tbRoSach.getValueAt(i,4).toString());
+        for (int i = 0 ; i < rowCount;i++){
+            System.out.println("view.MainForm.btXacNhanActionPerformed() vong for ");
+            MuonTraCtrl.MuonSach(nv.getMaNV(),maDG,tbRoSach.getValueAt(i,0).toString(),tbRoSach.getValueAt(i,3).toString(),tbRoSach.getValueAt(i,4).toString());
         }
+        
+        dgctr.rest(tfSoDTDocGia, tfTenDocGia, tfLopDocGia, tfKhoaDocGia);
+        JOptionPane.showMessageDialog(panelDocGia, "ok!");
     }//GEN-LAST:event_btXacNhanActionPerformed
+
+    private void cmbLoadSoDTDocGiaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbLoadSoDTDocGiaFocusLost
+        // TODO add your handling code here:
+        DocGiaCtrl dgctr = new DocGiaCtrl();
+        DocGia dg = dgctr.loadDocGia(this.cmbLoadSoDTDocGia);
+        tfSoDTDocGia.setText(dg.getSoDT());
+        tfTenDocGia.setText(dg.getTenDG());
+        tfLopDocGia.setText(dg.getLop());
+        tfKhoaDocGia.setText(dg.getKhoa());
+    }//GEN-LAST:event_cmbLoadSoDTDocGiaFocusLost
 
     private String getStr(JTextField tf) {
         String rs = tf.getText().trim();
@@ -1426,18 +1441,5 @@ public class MainForm extends javax.swing.JFrame {
 
     }
 
-    private void MuonSach(String maNV, String maDG, String MaDS, String soLuongSach, String soNgayMuon) {
-        MuonTraCtrl mtCtr = new MuonTraCtrl();
-        mtCtr.setMaDG(maDG);
-        mtCtr.setMaDS(MaDS);
-        mtCtr.setMaNV(maNV);
-        mtCtr.setSoLuongSach(Integer.valueOf(soLuongSach));
-        mtCtr.setSoNgayMuon(Integer.valueOf(soNgayMuon));
-        try {
-            mtCtr.muonSach();
-        } catch (SQLException ex) {
-            Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null,"loi o ma dau sach :"+MaDS + ex);
-        }
-
-    }
+    
 }

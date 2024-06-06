@@ -1373,6 +1373,7 @@
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="cmbLoadSoDTDocGiaFocusLost"/>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cmbLoadSoDTDocGiaMouseClicked"/>
                   </Events>
                   <AuxValues>
