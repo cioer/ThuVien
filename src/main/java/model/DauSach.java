@@ -7,6 +7,7 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -176,6 +177,9 @@ public class DauSach {
     }
 
     public int add() throws SQLException {
+        if(this.maDS == null){
+            this.maDS = createMa();
+        }
         String query = "INSERT INTO DauSach (MaDS, TenS, TacGia, NhaXB, NamXB, DonGia) VALUES (?, ?, ?, ?, ?, ?)";
         Connection connection = Conn.conn();
         connection.setAutoCommit(false);
@@ -266,6 +270,27 @@ public class DauSach {
             throw new SQLException("Loi tim so sach cua 1 dau sach " + ex.getMessage());
         }
         return dsMaS;
+    }
+    
+     private String createMa(){
+        String ma = "ds";
+        String query = "select top(1) MaDS from DauSach order by MaDS desc";
+        
+            ResultSet rs;
+        try {
+            rs = Conn.getData(query);
+            if(rs.next()){
+                Integer i = Integer.valueOf(rs.getString(1).substring(2));
+               Random rm = new Random();
+                i +=rm.nextInt(Integer.MAX_VALUE);
+                return ma + i.toString();
+            }
+        } catch (SQLException ex) {
+            System.out.println("model.DauSach.createMa()" + ex.getMessage());
+        }
+            
+        
+        return ma + "1";
     }
     @Override
     public String toString() {

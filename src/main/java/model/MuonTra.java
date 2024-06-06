@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -148,7 +149,8 @@ public class MuonTra {
             rs = Conn.getData(query);
             if(rs.next()){
                 Integer i = Integer.valueOf(rs.getString(1).substring(2));
-                i +=1;
+               Random rm = new Random();
+                i +=rm.nextInt(Integer.MAX_VALUE);
                 return ma + i.toString();
             }
         } catch (SQLException ex) {

@@ -7,6 +7,7 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -38,6 +39,10 @@ public class Sach {
         this.tinhTrang = tinhTrang;
     }
 
+    public String getMaDS() {
+        return maDS;
+    }
+
     public String getMaS() {
         return maS;
     }
@@ -58,6 +63,9 @@ public class Sach {
     }
 
     public void add() throws SQLException {
+        if(this.maS == null){
+            this.maS = crateMaDG();
+        }
         String query = "INSERT INTO Sach (MaS, MaDS, ViTri, TinhTrang) VALUES (?, ?, ?, ?)";
         Connection connection = null;
         try {
@@ -68,7 +76,7 @@ public class Sach {
             statement.setString(1, maS);
             statement.setString(2, maDS);
             statement.setString(3, viTri);
-            statement.setString(4, tinhTrang);
+            statement.setString(4, "có sẵn");
 
             statement.executeUpdate();
 
@@ -192,5 +200,21 @@ public class Sach {
         }
         update = "update Sach set TinhTrang = N'" + update + "' where mas = '" + mas + "'";
         Conn.update(update);
+    }
+    private String crateMaDG(){
+        String madg = "s1";
+        String query = "select top(1) mas from Sach order by mas desc";
+        try {
+            ResultSet rs = Conn.getData(query);
+            if(rs.next()){
+                Integer i = Integer.valueOf(rs.getString(1).substring(1));
+                Random rm = new Random();
+                i +=rm.nextInt(Integer.MAX_VALUE);
+                return "s" + i.toString();
+            }
+        } catch (SQLException ex) {
+            System.err.println("loi tao ma sach!");
+        }
+        return madg;
     }
 }

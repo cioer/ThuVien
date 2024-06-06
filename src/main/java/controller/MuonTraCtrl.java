@@ -28,8 +28,8 @@ public class MuonTraCtrl {
         mtCtr.setMaDG(maDG);
         mtCtr.setMaDS(MaDS);
         mtCtr.setMaNV(maNV);
-        mtCtr.setSoLuongSach(Integer.valueOf(soLuongSach.substring(0, soLuongSach.length() - 2)));
-        mtCtr.setSoNgayMuon(Integer.valueOf(soNgayMuon.substring(0, soNgayMuon.length() - 2)));
+        mtCtr.setSoLuongSach(Integer.valueOf(soLuongSach));
+        mtCtr.setSoNgayMuon(Integer.valueOf(soNgayMuon));
 
         
         try {
